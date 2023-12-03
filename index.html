@@ -19,6 +19,30 @@
         <h1 class="h1 text-light">Weather Dashboard</h1>
       </div>
     </header>
+    <main class="main">
+      <!-- first column for form and search history -->
+      <div class="container-dyn">
+        <div class="row page-info">
+          <div class="container-form">
+            <form id="form-location"></form>
+          </div>
+          <div class="row container-history" id="container-history"></div>
+        </div>
+      </div>
+      <!-- second column for current weather info and 5 day forecast -->
+      <div class="row">
+        <div class="container-weather" id="container-weather">
+          <div class="container-title">City + Date + Icon Here</div>
+          <p class="" id="">Temp Here</p>
+          <p class="" id="">Wind Here</p>
+          <p class="" id="">Humidity Here</p>
+        </div>
+        <!-- 5 day forecast -->
+        <div class="row container-forecast">
+          <h3 class="title-forecast" id="title-forecast"></h3>
+        </div>
+      </div>
+    </main>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/dayjs.min.js"
       integrity="sha512-FwNWaxyfy2XlEINoSnZh1JQ5TRRtGow0D6XcmAWmYCRgvqOUTnzCxPc9uF35u5ZEpirk1uhlPVA19tflhvnW1g=="
