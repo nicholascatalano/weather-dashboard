@@ -23,16 +23,40 @@
       <!-- first column for form and search history -->
       <div class="container-dyn">
         <div class="row page-info">
-          <div class="container-form">
-            <form id="form-location"></form>
+          <!-- first column for input form and search history -->
+          <div class="container-form bg-light">
+            <form id="form-location">
+              <!-- city search input here label -->
+              <div class="row">
+                <label for="search-input" class="search-label text-dark"
+                  >Search for a city:</label
+                >
+              </div>
+              <!-- city search input and button here -->
+              <div class="row">
+                <!-- input box here -->
+                <div>
+                  <input type="text" />
+                </div>
+                <!-- button here -->
+                <div>
+                  <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+              </div>
+            </form>
           </div>
           <div class="row container-history" id="container-history"></div>
         </div>
       </div>
       <!-- second column for current weather info and 5 day forecast -->
       <div class="row">
-        <div class="container-weather" id="container-weather">
-          <div class="container-title">City + Date + Icon Here</div>
+        <div class="container-current" id="container-current">
+          <div class="container-current">
+            <h3 class="title-current" id="title-current">
+              Location + Date Here
+            </h3>
+            <img src="" alt="" class="" id="icon-current" />
+          </div>
           <p class="" id="">Temp Here</p>
           <p class="" id="">Wind Here</p>
           <p class="" id="">Humidity Here</p>
