@@ -1,0 +1,9 @@
+// GLOBAL VARIABLES
+var apiKey = "e1df124c208137221a2dfb932d052cc6";
+var savedSearches = [];
+
+// FUNCTIONS
+
+// USER INTERACTION
+
+// INITIALIZATION
