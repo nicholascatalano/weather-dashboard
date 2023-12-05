@@ -9,10 +9,10 @@ console.log(apiKey);
 // function to handle search using city in form
 var searchSubmitHandler = function (event) {
   event.preventDefault();
-  var cityName = $("#cityName").val().trim();
+  var cityName = $(".cityName").val().trim();
   if (cityName) {
     displayWeather(cityName);
-    $("#cityName").val("");
+    $(".cityName").val("");
   } else {
     alert("Please enter a city name!");
   }
@@ -20,7 +20,8 @@ var searchSubmitHandler = function (event) {
 
 // function to display weather, both current and forecast
 function displayWeather() {
-  var cityName = $("#cityName").val();
+  // api urls for current day and forecast
+  var cityName = $(".cityName").val();
   var apiUrlCurrent =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     cityName +
@@ -34,14 +35,26 @@ function displayWeather() {
     apiKey +
     "&units=imperial";
 
+  // ajax get method to pull data from api
   $.ajax({
     url: apiUrlCurrent,
     method: "GET",
   }).then(function (response) {
     var currentCity = $("#searchedCityName");
     currentCity.append(response.name);
+    console.log(response);
 
+    // saving name to local storage to grab later
     var local = localStorage.setItem(keyCount, response.name);
+    keyCount = keyCount + 1;
+
+    // var to track the current date using the dt object in the response and appending it to city name
+    var timeUTC = new Date(response.dt * 1000);
+    currentCity.append(" " + "(" + timeUTC.toLocaleDateString("en-US") + ")");
+    currentCity.append(
+      `<img src="https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png">`
+    );
+
   });
 }
 
@@ -74,6 +87,6 @@ function displayWeather() {
 // USER INTERACTION
 
 // user submits form
-$("#search-form").submit(searchSubmitHandler);
+$(".search-form").submit(searchSubmitHandler);
 
 // INITIALIZATION

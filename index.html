@@ -19,58 +19,50 @@
       <h1 class="p-2 text-light text-center h1">Weather Dashboard</h1>
     </header>
     <main class="m-4 p-4">
-      <div class="col-12">
-        <div class="row">
-          <!-- first column for input form and search history -->
-          <div class="col-md-3 bg-light">
-            <h5>Search for a City:</h5>
-            <form class="form-inline" id="search-form">
-              <input
-                type="search"
-                class="mb-3 ds-input"
-                id="cityName"
-                placeholder="New York, Atlanta, etc..."
-              />
-              <button type="submit" class="btn btn-primary mb-3">Submit</button>
-            </form>
-            <!-- search history-->
-            <ul class="listCities" id="search-history"></ul>
-          </div>
-          <!-- second column for current weather info and 5 day forecast -->
-          <div class="col-md-9">
-            <div class="card mt-2">
-              <div class="card-body">
-                <div class="d-flex flex-row">
-                  <!-- dynamic searched city name -->
-                  <h2
-                    class="card-header-text align-self-center"
-                    id="searchedCityName"
-                  ></h2>
+      <div class="row">
+        <!-- column 1 with form submitter -->
+        <div class="col">
+            <div class="card-body text-center">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body bg-light">
+                        <h6 class="card-subtitle mb-2 text-muted">Enter a city name here:</h6>
+                        <form class="search-form mb-3">
+                            <input type="text" class="form-control cityName" placeholder="New York, Atlanta, etc...">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary bg-primary searchButton" type="button"
+                                  >Submit</button>
+                            </div>
+                          </form>
+  
+                        <ul class="list-group">
+  
+                        </ul>
+                    </div>
                 </div>
-                <h6 class="card-body-text text-muted" id="current-temp">
-                  Temperature:
-                </h6>
-                <h6
-                  class="card-body-text mt-3 text-muted"
-                  id="current-humidity"
-                >
-                  Humidity:
-                </h6>
-                <h6 class="card-body-text mt-3 text-muted" id="current-wind">
-                  Wind Speed:
-                </h6>
-              </div>
             </div>
-            <!-- 5 day forecast -->
-            <div>
-              <h2 class="card-header-text mt-3">5-Day Forecast:</h2>
-              <div class="row justify-content-between" id="five-day-forecast">
-                <!-- filled by displayCurrentWeather() -->
-              </div>
+        </div>
+       <!-- column 2 with current and five day forecast -->
+        <div class="col mt-4 mr-5">
+            <div class="card currentCard pb-2 pt-1">
+                <h5 class="card-title mt-2 text-center">Current Forecast</h5>
             </div>
-          </div>
+        </div>
+        <div class="row">
+            <div class="col mt-4">
+                <div class="card pb-5 fiveDayCard pl-5">
+                    
+                    <h5 class="card-title mt-2 mr-5">5-Day Forecast </h5>
+                    <div class="row">
+                        <div class="col fiveDayOne">
+                        </div>
+  
+                    </div>
+  
+                </div>
+            </div>
         </div>
       </div>
+    </div>
     </main>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/dayjs.min.js"
