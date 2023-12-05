@@ -1,6 +1,6 @@
 // GLOBAL VARIABLES
 var apiKey = "e1df124c208137221a2dfb932d052cc6";
-var savedSearches = [];
+var keyCount = 0;
 
 console.log(apiKey);
 
@@ -11,33 +11,65 @@ var searchSubmitHandler = function (event) {
   event.preventDefault();
   var cityName = $("#cityName").val().trim();
   if (cityName) {
-    displayCurrentWeather();
+    displayWeather(cityName);
     $("#cityName").val("");
   } else {
     alert("Please enter a city name!");
   }
 };
 
-var displayCurrentWeather = function displayCurrentWeather(city) {
-  var apiUrl =
+// function to display weather, both current and forecast
+function displayWeather() {
+  var cityName = $("#cityName").val();
+  var apiUrlCurrent =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
-    city +
+    cityName +
+    "&Appid=" +
+    apiKey +
+    "&units=imperial";
+  var apiUrlFiveDay =
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
+    cityName +
     "&Appid=" +
     apiKey +
     "&units=imperial";
 
-  fetch(apiUrl)
-    .then(function (response) {
-      console.log(response);
-      return response.json();
-    })
-    .then(function (data) {
-      console.log("data", data);
-      return;
-    });
-};
+  $.ajax({
+    url: apiUrlCurrent,
+    method: "GET",
+  }).then(function (response) {
+    var currentCity = $("#searchedCityName");
+    currentCity.append(response.name);
 
-function displayFiveDay() {}
+    var local = localStorage.setItem(keyCount, response.name);
+  });
+}
+
+// var displayCurrentWeather = function displayCurrentWeather(city) {
+//   var apiUrl =
+//     "https://api.openweathermap.org/data/2.5/weather?q=" +
+//     city +
+//     "&Appid=" +
+//     apiKey +
+//     "&units=imperial";
+
+//   fetch(apiUrl)
+//     .then(function (response) {
+//       console.log(response);
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log("data", data);
+//       return;
+//     });
+
+//   var currentApiUrl =
+//   "http://api.openweathermap.org/geo/1.0/reverse?lat=${response.coord.lat}&lon={lon}&limit={limit}&appid={API key}";
+
+//   fetch(currentApiUrl).then(function (response) {
+//     console.log(response);
+//   });
+// };
 
 // USER INTERACTION
 
