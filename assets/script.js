@@ -1,25 +1,20 @@
 // GLOBAL VARIABLES
 var apiKey = "e1df124c208137221a2dfb932d052cc6";
 var keyCount = 0;
+var searchButton = $(".searchButton");
 
 console.log(apiKey);
 
+// DATA
+
+// for loop to get data on webpage using local storage
+
 // FUNCTIONS
 
-// function to handle search using city in form
-var searchSubmitHandler = function (event) {
-  event.preventDefault();
-  var cityName = $(".cityName").val().trim();
-  if (cityName) {
-    displayWeather(cityName);
-    $(".cityName").val("");
-  } else {
-    alert("Please enter a city name!");
-  }
-};
-
 // function to display weather, both current and forecast
-function displayWeather() {
+searchButton.click(function displayWeather() {
+  // variable to grab search input value
+  var cityName = $(".cityName").val().trim();
   // api urls for current day and forecast
   var cityName = $(".cityName").val();
   var apiUrlCurrent =
@@ -35,14 +30,16 @@ function displayWeather() {
     apiKey +
     "&units=imperial";
 
+    
+
   // ajax get method to pull data from api
   $.ajax({
     url: apiUrlCurrent,
     method: "GET",
   }).then(function (response) {
-    var currentCity = $("#searchedCityName");
-    currentCity.append(response.name);
-    console.log(response);
+    // saves current city to var, then appends it to unordered list element
+    var currentCity = $(".list-group").addClass("list-group-item");
+    currentCity.append("<li>" + response.name + "</li>");
 
     // saving name to local storage to grab later
     var local = localStorage.setItem(keyCount, response.name);
@@ -54,39 +51,9 @@ function displayWeather() {
     currentCity.append(
       `<img src="https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png">`
     );
-
   });
-}
-
-// var displayCurrentWeather = function displayCurrentWeather(city) {
-//   var apiUrl =
-//     "https://api.openweathermap.org/data/2.5/weather?q=" +
-//     city +
-//     "&Appid=" +
-//     apiKey +
-//     "&units=imperial";
-
-//   fetch(apiUrl)
-//     .then(function (response) {
-//       console.log(response);
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       console.log("data", data);
-//       return;
-//     });
-
-//   var currentApiUrl =
-//   "http://api.openweathermap.org/geo/1.0/reverse?lat=${response.coord.lat}&lon={lon}&limit={limit}&appid={API key}";
-
-//   fetch(currentApiUrl).then(function (response) {
-//     console.log(response);
-//   });
-// };
+});
 
 // USER INTERACTION
-
-// user submits form
-$(".search-form").submit(searchSubmitHandler);
 
 // INITIALIZATION
