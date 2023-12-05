@@ -18,7 +18,7 @@ var searchSubmitHandler = function (event) {
   }
 };
 
-displayFiveDay();
+// displayFiveDay();
 
 // USER INTERACTION
 
