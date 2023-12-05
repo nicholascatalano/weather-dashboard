@@ -51,9 +51,9 @@ searchButton.click(function displayWeather(event) {
         .append("<div>")
         .addClass("card-body");
       currentWeatherCard.empty();
-      var currentName = currentWeatherCard.append("<p>");
+      var currentCityName = currentWeatherCard.append("<p>");
 
-      currentWeatherCard.append(currentName);
+      currentWeatherCard.append(currentCityName);
 
       // saves current city to var, then appends it to search history element
       var searchItem = $(".list-group").addClass("list-group-item");
@@ -61,7 +61,12 @@ searchButton.click(function displayWeather(event) {
 
       // var to track the current date using the dt object in the response and appending it to city name
       var timeUTC = new Date(response.dt * 1000);
-      // );
+      currentCityName.append(
+        response.name + " (" + timeUTC.toLocaleDateString("en-US") + ")"
+      );
+      currentCityName.append(
+        `<img src="https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png">`
+      );
     });
   }
 });
