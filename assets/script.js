@@ -2,10 +2,20 @@
 var apiKey = "e1df124c208137221a2dfb932d052cc6";
 var savedSearches = [];
 
+console.log(apiKey);
+
 // FUNCTIONS
 
-var displayCurrentWeather = function (cityName) {
-  fetch();
+// function to handle search using city in form
+var searchSubmitHandler = function (event) {
+  event.preventDefault();
+  var cityName = $("#cityName").val().trim();
+  if (cityName) {
+    displayCurrentWeather();
+    $("#cityName").val("");
+  } else {
+    alert("Please enter a city name!");
+  }
 };
 
 displayFiveDay();
@@ -13,21 +23,6 @@ displayFiveDay();
 // USER INTERACTION
 
 // user submits form
-$("#form-location").on("submit", function (event) {
-  event.preventDefault();
-
-  // get city name
-  var cityName = $("#search-input").val();
-
-  // alert if user enters no city or unknown city
-  if (cityName === "" || cityName == null) {
-    alert("Please enter name of valid city.");
-    return;
-  } else {
-    // functions to display current and 5 day forecast
-    displayCurrentWeather();
-    displayFiveDay();
-  }
-});
+$("#search-form").submit(searchSubmitHandler);
 
 // INITIALIZATION
