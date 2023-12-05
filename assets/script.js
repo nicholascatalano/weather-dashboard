@@ -4,7 +4,9 @@ var savedSearches = [];
 
 // FUNCTIONS
 
-displayCurrentWeather();
+var displayCurrentWeather = function (cityName) {
+  fetch();
+};
 
 displayFiveDay();
 

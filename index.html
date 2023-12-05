@@ -14,105 +14,61 @@
     <title>Weather Dashboard</title>
   </head>
   <body>
-    <header class="header">
-      <div class="header-container d-flex justify-content-center bg-dark">
-        <h1 class="h1 text-light">Weather Dashboard</h1>
-      </div>
+    <!-- header  -->
+    <header class="bg-dark">
+      <h1 class="p-2 text-light text-center h1">Weather Dashboard</h1>
     </header>
-    <main class="main">
-      <div class="container-dyn">
-        <div class="row page-info">
+    <main class="m-4 p-4">
+      <div class="col-12">
+        <div class="row">
           <!-- first column for input form and search history -->
-          <div class="col-12 col-md-3 container-form bg-light">
-            <form id="form-location">
-              <!-- city search input here label -->
-              <div class="row">
-                <label for="search-input" class="search-label text-dark"
-                  >Search for a city:</label
-                >
-              </div>
-              <!-- city search input and button here -->
-              <div class="row">
-                <!-- input box here -->
-                <div class="col-12 col-md-9">
-                  <input
-                    class="search-input rounded"
-                    type="text"
-                    id="search-input"
-                    name="search-input"
-                  />
-                </div>
-                <!-- button here -->
-                <div class="col-12 col-md-9">
-                  <button type="submit" class="btn btn-primary search-button">
-                    Search
-                  </button>
-                </div>
-              </div>
+          <div class="col-md-3 bg-light">
+            <h5>Search for a City:</h5>
+            <form class="form-inline" id="search-form">
+              <input
+                type="search"
+                class="submit-form mb-3 ds-input"
+                id="cityName"
+                placeholder="Enter city name..."
+              />
+              <button type="submit" class="btn btn-primary mb-3">Submit</button>
             </form>
+            <!-- search history-->
+            <ul class="listCities" id="search-history"></ul>
           </div>
           <!-- second column for current weather info and 5 day forecast -->
-          <div class="col-12 col-md-9">
-            <div class="row d-block" id="container-current">
-              <div class="container-title-current">
-                <!-- dynamic title for searched location and current date -->
-                <h3 class="title-current d-inline" id="title-current"></h3>
-                <!-- dynamic icon for weather -->
-                <img src="" alt="" class="d-inline" id="icon-current" />
+          <div class="col-md-9">
+            <div class="card mt-2">
+              <div class="card-body">
+                <div class="d-flex flex-row">
+                  <!-- dynamic searched city name -->
+                  <h2
+                    class="card-header-text align-self-center"
+                    id="searchedCityName"
+                  ></h2>
+                </div>
+                <h6 class="card-body-text text-muted" id="current-temp">
+                  Temperature:
+                </h6>
+                <h6
+                  class="card-body-text mt-3 text-muted"
+                  id="current-humidity"
+                >
+                  Humidity:
+                </h6>
+                <h6 class="card-body-text mt-3 text-muted" id="current-wind">
+                  Wind Speed:
+                </h6>
               </div>
-              <p class="current-temp" id="current-temp"></p>
-              <p class="current-wind" id="current-wind"></p>
-              <p class="current-hum" id="current-hum"></p>
             </div>
             <!-- 5 day forecast -->
-            <div class="container-forecast row d-block">
-              <!-- dynamic title to display "5 Day Forecast:" -->
-              <h3 class="title-forecast" id="title-forecast"></h3>
-              <!-- dynamic container to display cards for next 5 days of weather for searched location -->
-              <div
-                class="container-forecast"
-                id="container-forecast d-flex justify-content-between"
-              >
-                <!-- first dynamic upcoming weather card -->
-                <div class="card-upcoming">
-                  <p class="date-upcoming" id="date-upcoming1"></p>
-                  <img src="" alt="" id="icon-upcoming1" />
-                  <p class="temp-upcoming" id="temp-upcoming1"></p>
-                  <p class="humidity-upcoming" id="humidity-upcoming1"></p>
-                </div>
-                <!-- second dynamic upcoming weather card -->
-                <div class="card-upcoming">
-                  <p class="date-upcoming" id="date-upcoming2"></p>
-                  <img src="" alt="" id="icon-upcoming1" />
-                  <p class="temp-upcoming" id="temp-upcoming2"></p>
-                  <p class="humidity-upcoming" id="humidity-upcoming2"></p>
-                </div>
-                <!-- third dynamic upcoming weather card -->
-                <div class="card-upcoming">
-                  <p class="date-upcoming" id="date-upcoming3"></p>
-                  <img src="" alt="" id="icon-upcoming1" />
-                  <p class="temp-upcoming" id="temp-upcoming3"></p>
-                  <p class="humidity-upcoming" id="humidity-upcoming3"></p>
-                </div>
-                <!-- fourth dynamic upcoming weather card -->
-                <div class="card-upcoming">
-                  <p class="date-upcoming" id="date-upcoming4"></p>
-                  <img src="" alt="" id="icon-upcoming1" />
-                  <p class="temp-upcoming" id="temp-upcoming4"></p>
-                  <p class="humidity-upcoming" id="humidity-upcoming4"></p>
-                </div>
-                <!-- fifth dynamic upcoming weather card -->
-                <div class="card-upcoming">
-                  <p class="date-upcoming" id="date-upcoming5"></p>
-                  <img src="" alt="" id="icon-upcoming1" />
-                  <p class="temp-upcoming" id="temp-upcoming5"></p>
-                  <p class="humidity-upcoming" id="humidity-upcoming5"></p>
-                </div>
+            <div>
+              <h2 class="card-header-text mt-3">5-Day Forecast:</h2>
+              <div class="row justify-content-between" id="five-day-forecast">
+                <!-- filled by displayCurrentWeather() -->
               </div>
             </div>
           </div>
-          <!-- dynamic search history container -->
-          <div class="row container-history" id="container-history"></div>
         </div>
       </div>
     </main>
