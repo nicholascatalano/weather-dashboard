@@ -18,7 +18,26 @@ var searchSubmitHandler = function (event) {
   }
 };
 
-// displayFiveDay();
+var displayCurrentWeather = function displayCurrentWeather(city) {
+  var apiUrl =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    city +
+    "&Appid=" +
+    apiKey +
+    "&units=imperial";
+
+  fetch(apiUrl)
+    .then(function (response) {
+      console.log(response);
+      return response.json();
+    })
+    .then(function (data) {
+      console.log("data", data);
+      return;
+    });
+};
+
+function displayFiveDay() {}
 
 // USER INTERACTION
 
