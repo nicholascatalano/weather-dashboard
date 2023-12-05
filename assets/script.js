@@ -30,28 +30,31 @@ searchButton.click(function displayWeather() {
     apiKey +
     "&units=imperial";
 
-    
+  if (cityName === "") {
+    alert("Please enter a valid city!");
+    return;
+  } else {
+    // ajax get method to pull data from api
+    $.ajax({
+      url: apiUrlCurrent,
+      method: "GET",
+    }).then(function (response) {
+      // saves current city to var, then appends it to unordered list element
+      var currentCity = $(".list-group").addClass("list-group-item");
+      currentCity.append("<li>" + response.name + "</li>");
 
-  // ajax get method to pull data from api
-  $.ajax({
-    url: apiUrlCurrent,
-    method: "GET",
-  }).then(function (response) {
-    // saves current city to var, then appends it to unordered list element
-    var currentCity = $(".list-group").addClass("list-group-item");
-    currentCity.append("<li>" + response.name + "</li>");
+      // saving name to local storage to grab later
+      var local = localStorage.setItem(keyCount, response.name);
+      keyCount = keyCount + 1;
 
-    // saving name to local storage to grab later
-    var local = localStorage.setItem(keyCount, response.name);
-    keyCount = keyCount + 1;
-
-    // var to track the current date using the dt object in the response and appending it to city name
-    var timeUTC = new Date(response.dt * 1000);
-    currentCity.append(" " + "(" + timeUTC.toLocaleDateString("en-US") + ")");
-    currentCity.append(
-      `<img src="https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png">`
-    );
-  });
+      // var to track the current date using the dt object in the response and appending it to city name
+      var timeUTC = new Date(response.dt * 1000);
+      currentCity.append(" " + "(" + timeUTC.toLocaleDateString("en-US") + ")");
+      currentCity.append(
+        `<img src="https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png">`
+      );
+    });
+  }
 });
 
 // USER INTERACTION
