@@ -7,7 +7,14 @@ console.log(apiKey);
 
 // DATA
 
-// for loop to get data on webpage using local storage
+// for loop to keep data on webpage using get local storage
+for (var i = 0; i < localStorage.length; i++) {
+  var city = localStorage.getItem(i);
+
+  var cityName = $(".list-group").addClass("list-group-item");
+
+  cityName.append("<li>" + city + "</li>");
+}
 
 // FUNCTIONS
 
