@@ -35,7 +35,7 @@ searchButton.click(function displayWeather(event) {
     alert("Please enter a valid city!");
     return;
   } else {
-    // ajax get method to pull data from api
+    // jquery ajax get method to pull data from api
     $.ajax({
       url: apiUrlCurrent,
       method: "GET",
@@ -61,12 +61,44 @@ searchButton.click(function displayWeather(event) {
 
       // var to track the current date using the dt object in the response and appending it to city name
       var timeUTC = new Date(response.dt * 1000);
+      // append response.name + current date to p tag variable we created above
       currentCityName.append(
         response.name + " (" + timeUTC.toLocaleDateString("en-US") + ")"
       );
       currentCityName.append(
         `<img src="https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png">`
       );
+
+      // variable to store the three weather conditions, which append to the city name
+      var currentConditions = currentCityName.append(currentConditions);
+      // append each condition using response.(condition)
+      currentConditions.append(
+        "<p>" + "Temperature: " + response.main.temp + "</p>"
+      );
+      currentConditions.append(
+        "<p>" + "Humidity: " + response.main.humidity + "%" + "</p>"
+      );
+      currentConditions.append(
+        "<p>" + "Wind Speed: " + response.wind.speed + "</p>"
+      );
+
+      // jquery ajax get method to gather five day forecast data
+      $.ajax({
+        url: apiUrlFiveDay,
+        method: "GET",
+      }).then(function (response) {
+        console.log(response);
+
+        // variable to capture an array which are noon of of the following 5 days
+        var futureDayArr = [3, 11, 19, 27, 35];
+        // variable to capture the container that will hold each of the five days, while adding the bootstrap card-body class
+        var fiveDayContainer = $(".fiveDayCard").addClass("card-body");
+        // variable to capture the individual cards for each forecasted day, while applying the bootstrap class card-text
+        var fiveDaySingleCard = $(".fiveDaySingleCard").addClass("card-text");
+        fiveDaySingleCard.empty();
+
+        
+      });
     });
   }
 });
