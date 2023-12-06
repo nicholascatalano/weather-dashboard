@@ -63,6 +63,7 @@ searchButton.click(function displayWeather(event) {
       var timeUTC = new Date(response.dt * 1000);
       // append response.name + current date to p tag variable we created above
       currentCityName.append(
+        // converting date to a string using "en-us"
         response.name + " (" + timeUTC.toLocaleDateString("en-US") + ")"
       );
       currentCityName.append(
@@ -97,7 +98,32 @@ searchButton.click(function displayWeather(event) {
         var fiveDaySingleCard = $(".fiveDaySingleCard").addClass("card-text");
         fiveDaySingleCard.empty();
 
-        
+        // for each function to apply the date and weather conditions to each card for the 5 days in the day array
+        futureDayArr.forEach(function (i) {
+          // var to pull date data for each of the 5 listed in the array, then converting them to dates
+          var forecastUTC = new Date(response.list[i].dt * 1000);
+          // converting date to a string using "en-us"
+          forecastUTC = forecastUTC.toLocaleDateString("en-US");
+
+          // appending each forecast card element to the container we created above
+          fiveDayContainer.append(
+            "<div>" +
+              "<p>" +
+              forecastUTC +
+              "</p>" +
+              `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` +
+              "<p>" +
+              "Temperature: " +
+              response.list[i].main.temp +
+              "</p>" +
+              "<p>" +
+              "Humidity: " +
+              response.list[i].main.humidity +
+              "%" +
+              "</p>" +
+              "</div>"
+          );
+        });
       });
     });
   }
