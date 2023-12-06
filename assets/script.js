@@ -57,6 +57,7 @@ searchButton.click(function displayWeather(event) {
       var currentWeatherCard = $(".currentCard")
         .append("<div>")
         .addClass("card-body");
+      // empties page of old weather data
       currentWeatherCard.empty();
       var currentCityName = currentWeatherCard.append("<p>");
 
@@ -103,6 +104,7 @@ searchButton.click(function displayWeather(event) {
         var fiveDayContainer = $(".fiveDayCard").addClass("card-body");
         // variable to capture the individual cards for each forecasted day, while applying the bootstrap class card-text
         var fiveDaySingleCard = $(".fiveDaySingleCard").addClass("card-text");
+        // empties page of old weather data
         fiveDaySingleCard.empty();
 
         // for each function to apply the date and weather conditions to each card for the 5 days in the day array
